@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+@theme {
+  --color-borderGray: #D9D9E0;
+  --color-textSecondary: #60646C;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -14,7 +28,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
     --foreground: #ededed;
   }
 }
