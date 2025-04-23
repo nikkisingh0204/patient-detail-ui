@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconSearch, IconX, IconVaccineBottle } from "@tabler/icons-react";
 interface SearchDialogProps {
   isOpen: boolean;
@@ -11,7 +11,16 @@ const SearchDialog: React.FC<SearchDialogProps> = ({
   onClose,
   onAddToPrescription,
 }) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("Amoxicillin");
+  const [debouncedQuery, setDebouncedQuery] = useState("Amoxicillin");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 500);
+
+    return () => clearTimeout(handler); 
+  }, [query]);
 
   if (!isOpen) return null;
 
@@ -26,6 +35,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full p-2 rounded-md focus:outline-none cursor-text"
+            autoFocus
           />
           <button
             onClick={onClose}
@@ -34,23 +44,25 @@ const SearchDialog: React.FC<SearchDialogProps> = ({
             <IconX />
           </button>
         </div>
+        {debouncedQuery && (
         <div className="w-full">
           <h6 className="text-textSecondary text-xs px-4 py-4">
             Suggested Actions
           </h6>
           <button
             onClick={() => {
-              onAddToPrescription("Amoxicillin");
+              onAddToPrescription(debouncedQuery);
             }}
             className="relative flex items-center gap-2 w-full h-8 bg-[#F7F9FF] mb-3 px-6 py-1 text-[#3A5BC7] cursor-pointer"
           >
             <IconVaccineBottle />
-            <span>Add to Amoxicillin Prescription</span>
+            <span>Add {debouncedQuery} to Prescription</span>
             <h6 className="absolute text-xs text-textSecondary right-0 top-1/2 transform -translate-y-1/2 mr-4">
               Prescription
             </h6>
           </button>
         </div>
+        )}
       </div>
     </div>
   );

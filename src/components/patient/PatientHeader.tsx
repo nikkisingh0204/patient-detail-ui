@@ -10,34 +10,32 @@ export default function PatientHeader() {
         <div className="flex w-full h-3/4 border-b border-borderGray">
           {/* Left */}
           <div className="flex-1 px-4 flex items-center gap-4">
-            <h1 className="text-[#107D98] font-semibold text-lg bg-[#F2FAFB] py-0.5 px-1 rounded-md">
+            <h1 className="flex items-center justify-center text-[#107D98] font-semibold text-lg bg-[#F2FAFB]  h-[48px] w-[48px] rounded-md">
               CS
             </h1>
             <div className="flex flex-col gap-1">
-              <h1 className="text-black font-semibold text-base">
-                Chinmay Sule
-              </h1>
+              <h1 className="text-black font-semibold text-xl">Chinmay Sule</h1>
               <h5 className="text-textSecondary text-xs">100087-000015-2</h5>
             </div>
           </div>
           {/* Right */}
           <div className="flex items-center px-4 gap-6 text-[#1C2024] basis-[33.33%]">
             <div className="flex items-center gap-1 border-x border-borderGray px-4 h-full w-1/2">
-              <IconPhone size={15} />
-              <span className="text-sm">+91-9096396014</span>
+              <IconPhone size={16} />
+              <span className="text-mono">+91-9096396014</span>
             </div>
-            <div className="flex gap-4">
-              <span className="text-sm flex items-center gap-1">
-                <IconMars size={15} /> Male
+            <div className="flex gap-6">
+              <span className="text-mono flex items-center gap-1">
+                <IconMars size={16} /> Male
               </span>
-              <span className="text-sm flex items-center gap-1">
-                <IconCake size={15} /> 38Y
+              <span className="text-mono flex items-center gap-1">
+                <IconCake size={16} /> 38Y
               </span>
             </div>
           </div>
         </div>
-         {/* Bottom Section: Properties */}
-        <div className="flex flex-row flex-wrap gap-2 px-3 py-1">
+        {/* Bottom Section: Properties */}
+        <div className="flex flex-row flex-wrap gap-2 px-3 py-2">
           {patientProperties.map((prop, index) => (
             <PropertyCard
               key={index}

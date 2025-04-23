@@ -31,14 +31,18 @@ const AccordionItem = ({
     <div className="px-4 py-2">
       <div
         onClick={onClick}
-        className={`h-full cursor-pointer border border-borderGray ${isActive ? 'rounded-t-md rounded-bl-none rounded-br-none' : 'border-borderGray'} rounded-md flex justify-between items-center bg-white`}
+        className={`h-full cursor-pointer border border-borderGray ${
+          isActive
+            ? "rounded-t-md rounded-bl-none rounded-br-none"
+            : "border-borderGray"
+        } rounded-md flex justify-between items-center bg-white`}
       >
         <div className="p-2 border-x border-l-0">
-          <span className="text-textSecondary">
+          <span className="text-textSecondary text-sm font-normal">
             {isActive ? <IconChevronUp /> : <IconChevronDown />}
           </span>
         </div>
-        <div className="px-4 py-2 h-full flex-1 flex items-center justify-between bg-[#F9F9FB] overflow-hidden">
+        <div className="px-4 py-0 min-h-[40px] flex-1 flex items-center justify-between bg-[#F9F9FB] overflow-hidden rounded-md">
           <span className="text-[#1C2024] text-sm font-semibold">{title}</span>
 
           {isActive ? (
@@ -53,7 +57,13 @@ const AccordionItem = ({
         </div>
       </div>
       {isActive && (
-        <div className={`flex flex-col border border-borderGray ${isActive ? ' rounded-b-md rounded-tr-none rounded-tl-none' : 'rounded-md'} justify-center items-center border-t-0`}>
+        <div
+          className={`flex flex-col border border-borderGray ${
+            isActive
+              ? " rounded-b-md rounded-tr-none rounded-tl-none"
+              : "rounded-md"
+          } justify-center items-center border-t-0`}
+        >
           {activeSection === "Prescriptions" ? (
             <>
               <PrescriptionAccordion prescribedMedicine={prescribedMedicine} />
@@ -71,7 +81,9 @@ const AccordionItem = ({
 interface AccordionContainerProps {
   prescribedMedicine: PrescriptionRowType[];
 }
-const AccordionContainer: React.FC<AccordionContainerProps> = ({ prescribedMedicine }) => {
+const AccordionContainer: React.FC<AccordionContainerProps> = ({
+  prescribedMedicine,
+}) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("");
 
@@ -98,6 +110,6 @@ const AccordionContainer: React.FC<AccordionContainerProps> = ({ prescribedMedic
       <div className="h-10 bg-white" />
     </div>
   );
-}
+};
 
 export default AccordionContainer;

@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import { useSavedChanges } from "@/context/SavedChangesContext";
 
 const IconButton = ({
   icon,
@@ -31,6 +32,7 @@ const IconButton = ({
 
 export default function PageHeaderAction() {
   const router = useRouter();
+  const { showSaved } = useSavedChanges();
 
   return (
     <div className="flex items-center justify-between mb-6 h-16 p-6 bg-[#FCFCFD] border-b border-borderGray w-full">
@@ -52,7 +54,11 @@ export default function PageHeaderAction() {
 
       {/* Right side */}
       <div className="flex items-center gap-3">
-        <h6 className="text-textSecondary text-sm">Changes saved.</h6>
+        {showSaved && (
+          <span className="text-textSecondary text-sm animate-fadeIn">
+            Changes saved.
+          </span>
+        )}
         <IconButton
           variant="primary"
           icon={
